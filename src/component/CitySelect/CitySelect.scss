@@ -1,0 +1,113 @@
+$vm: 100vw/375;
+
+.citys-list {
+
+}
+.box div {
+  color: #000;
+  font-size: 15 * $vm;
+}
+
+.section>.title {
+  padding: 0 10 * $vm;
+  height: 25 * $vm;
+  line-height: 25 * $vm;
+  background: #f0f0f0;
+  font-size: 12 * $vm;
+  color: #999999;
+}
+
+.section>.box {
+  padding: 0 10 * $vm;
+}
+
+.section>.grid {
+  padding: 10 * $vm 0 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.grid>div {
+  width: 50 * $vm;
+  text-align: center;
+  margin-bottom: 10 * $vm;
+}
+
+.line>div {
+  height: 30 * $vm;
+  line-height: 30 * $vm;
+  border-top: 1 * $vm solid #f0f0f0;
+}
+
+.nonius {
+  // touch-action: auto;  
+  /*height: 100%;*/
+  width: 50 * $vm;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  right: 0;
+  font-size: 12 * $vm;
+  z-index: 999;
+  // -webkit-overflow-scrolling: touch;
+}
+
+.nonius > div {
+  width: 100%;
+  text-align: center;
+  display: block;
+  height: 20 * $vm;
+}
+
+.icon-local {
+  width: 11 * $vm;
+  height: 16 * $vm;
+  pointer-events: none;
+}
+
+.city-item {
+  display: block;
+  height: 20 * $vm;
+  width: 100%;
+  text-align: center;
+  font-size: 13 * $vm;
+}
+
+.on-select {
+  width: 50 * $vm;
+  height: 30 * $vm;
+  border-radius: 5 * $vm;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: rgba(0, 0, 0, .5);
+  text-align: center;
+  padding: 10px;
+  z-index: 99;
+  font-size: 24 * $vm;
+  font-weight: 600;
+  line-height: 30 * $vm;
+}
+
+/*.now-noniu {
+	font-size: 48 * $vm;
+	position: fixed;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border-radius: 50%;
+	background-color: #f0f0f0;
+	width: 80 * $vm;
+	height: 80 * $vm;
+	line-height: 80 * $vm;
+	text-align: center;
+}*/
