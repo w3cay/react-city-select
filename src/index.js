@@ -1,9 +1,9 @@
 import './scss/style.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CitySelect from './component/CitySelect/CitySelect';
-import { data } from './data';
+import App from './component/App';
+
 
 ReactDOM.render((
-    <CitySelect data={data}></CitySelect>
+    <App></App>
 ), document.getElementById('root'));

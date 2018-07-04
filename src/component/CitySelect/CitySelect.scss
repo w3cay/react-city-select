@@ -1,8 +1,5 @@
 $vm: 100vw/375;
 
-.citys-list {
-
-}
 .box div {
   color: #000;
   font-size: 15 * $vm;
@@ -22,7 +19,7 @@ $vm: 100vw/375;
 }
 
 .section>.grid {
-  padding: 10 * $vm 0 0;
+  padding: 10 * $vm 10 * $vm 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -43,9 +40,7 @@ $vm: 100vw/375;
 }
 
 .nonius {
-  // touch-action: auto;  
-  /*height: 100%;*/
-  width: 50 * $vm;
+  width: 40 * $vm;
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
@@ -56,7 +51,6 @@ $vm: 100vw/375;
   right: 0;
   font-size: 12 * $vm;
   z-index: 999;
-  // -webkit-overflow-scrolling: touch;
 }
 
 .nonius > div {
@@ -72,7 +66,7 @@ $vm: 100vw/375;
   pointer-events: none;
 }
 
-.city-item {
+.keys-item {
   display: block;
   height: 20 * $vm;
   width: 100%;
@@ -97,17 +91,3 @@ $vm: 100vw/375;
   font-weight: 600;
   line-height: 30 * $vm;
 }
-
-/*.now-noniu {
-	font-size: 48 * $vm;
-	position: fixed;
-	top: 40%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	border-radius: 50%;
-	background-color: #f0f0f0;
-	width: 80 * $vm;
-	height: 80 * $vm;
-	line-height: 80 * $vm;
-	text-align: center;
-}*/
