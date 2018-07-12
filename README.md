@@ -53,3 +53,10 @@ export default class APP extends React.Component {
   }
 }
 ```
+### 参数 props
+
+属性 | 值 | 说明
+---|---|---
+data | 可选；字符串；| 标题
+config | 可选；数组；| 值, 格式是[value1, value2, value3], 对应数据源的相应级层value
+onSelectItem | 可选；数字；| 列数，已知的情况下，必填
