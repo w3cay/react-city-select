@@ -1,6 +1,7 @@
 # react-city-select
 基于 React 的可配置化城市选择组件
 
+
 示例： https://chelun-h5.github.io/react-city-select/example/
 
 使用：
@@ -61,7 +62,7 @@ export default class APP extends React.Component {
 属性 | 值 | 说明
 ---|---|---
 data | 必填；对象；| 城市组件数据JSON对象
-config | 可选；对象；| 配置或覆盖某个 key 下的值，详情见下表
+config | 可选；对象；| 配置或覆盖某个 key 下的值，详情见下表
 onSelectItem | 必填；函数；| 点击单元格数据回调
 
 ### config 参数
@@ -70,10 +71,10 @@ onSelectItem | 必填；函数；| 点击单元格数据回调
 
 属性 | 值 | 说明
 ---|---|---
-config['sec-key']['title'] | 可选；字符串；| 索引标题
-config['sec-key']['key'] | 可选；字符串；| 游标标题
-config['sec-key']['icon'] | 可选；字符串；| 游标图标（替代标题）
-config['sec-key']['style'] | 可选；字符串；(line或grid) | 数据项展示方式
+config['sec-key']['title'] | 可选；字符串；| 索引标题
+config['sec-key']['key'] | 可选；字符串；| 游标标题
+config['sec-key']['icon'] | 可选；字符串；| 游标图标（替代标题）
+config['sec-key']['style'] | 可选；字符串；(line或grid) | 数据项展示方式
 
 sec-key : 对象key
 
@@ -101,7 +102,7 @@ sec-key : 对象key
     "name": "石家庄"
   }
 ],
-// 字母数据项
+// 字母数据项
 "A": [{
     "id": "152900",
     "name": "阿拉善盟"
@@ -122,7 +123,3 @@ sec-key : 对象key
 ]
 ...
 ```
-
-
-
-

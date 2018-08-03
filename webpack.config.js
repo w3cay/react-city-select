@@ -44,8 +44,7 @@ const babelOptions = {
 
 const commonConfig = merge([{
     entry: {
-        // 设置打包入口文件，并添加polyfill，提供 ES6新特性支持
-        index: ['babel-polyfill', process.env.NODE_ENV == 'release' ?'./lib/index' : './src/index.js' ],
+        index: [process.env.NODE_ENV == 'release' ?'./lib/index' : './src/index.js' ],
     },
     module: {
         rules: [{
@@ -59,7 +58,7 @@ const commonConfig = merge([{
                 // 对 scss/css 文件的处理
                 test: /\.scss$|\.css$/,
                 loader: [
-                    'style-loader', 'css-loader?modules', 'sass-loader', 'postcss-loader'
+                    'style-loader', 'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]', 'sass-loader', 'postcss-loader'
                 ],
             }, {
                 test: /\.html$/,

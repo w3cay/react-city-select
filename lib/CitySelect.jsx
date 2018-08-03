@@ -52,16 +52,16 @@ export default class CitySelect extends React.Component {
 
   componentDidMount() {
     if (this.props.data) {
-      log('init success')
-      const noniusEle = document.querySelector('#cl-search-component  #nonius');
-      const noniusEleChild = document.querySelector('#cl-search-component  #nonius > .' + styles['keys-item']);
-      this.listTitleDom = document.querySelectorAll('#cl-search-component .section > .' + styles['title']);
+      log('init success');
+      const noniusEle = document.querySelector(`.${styles.nonius}`);
+      const noniusEleChild = document.querySelector(`.${styles.nonius} > .${styles['keys-item']}`);
+      this.listTitleDom = document.querySelectorAll(`.${styles.section} > .${styles['title']}`);
 
       this.noniusEleTop = noniusEle.getClientRects()[0].top;
       this.noniusEleHeight = noniusEleChild.clientHeight;
 
       // 单独声明 touchmove 事件，解决页面滚动问题
-      document.querySelector('#cl-search-component  #nonius').addEventListener("touchmove", (e) => {
+      document.querySelector(`.${styles.nonius}`).addEventListener("touchmove", (e) => {
         this.sidebarTouchMove(e)
       }, {
           passive: false // react 绑定事件默认为 true
@@ -133,10 +133,9 @@ export default class CitySelect extends React.Component {
   render() {
     if (!this.props.data) return false;
     return (
-      <div id="cl-search-component" className={styles.clSearchComponent}>
+      <div className={styles.clSearchComponent}>
         {/* 检索游标 */}
         <div className={styles['nonius']}
-          id="nonius"
           onTouchStart={this.sidebarTouchStart.bind(this)}
           onTouchEnd={this.sidebarTouchEnd.bind(this)}
         >
@@ -155,7 +154,7 @@ export default class CitySelect extends React.Component {
         </div> : null}
 
         {/* 数据列表 */}
-        <div className="container citys-list">
+        <div>
           {Object.keys(this.props.data).map((sec, secIndex) =>
             <div className={styles.section}
               id={secIndex} key={secIndex}>
