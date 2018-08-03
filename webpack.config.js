@@ -25,15 +25,6 @@ console.log(`▶️  当前环境：${process.env.NODE_ENV}, 开始构建... �
 // 根据当前 src 获得项目路径
 let rootDir = __dirname.substr(0, __dirname.indexOf('src'));
 let buildPath = __dirname + '/example';
-// if (rootDir) {
-//     // 获取资源输出目录
-//     buildPath = rootDir + __dirname.substr(__dirname.indexOf('src')).replace('src', 'dist');
-// } else {
-//     // 根据当前 src 获得项目路径
-//     rootDir = __dirname;
-//     // 获取资源输出目录
-//     buildPath = __dirname + '/dist';
-// }
 
 // 设置 DEBUG 环境变量,用于环境判断
 const DEBUG = process.env.NODE_ENV === 'development';
@@ -54,7 +45,7 @@ const babelOptions = {
 const commonConfig = merge([{
     entry: {
         // 设置打包入口文件，并添加polyfill，提供 ES6新特性支持
-        index: ['babel-polyfill', process.env.NODE_ENV == 'release' ?'./lib/index.jsx' : './src/index.js' ],
+        index: ['babel-polyfill', process.env.NODE_ENV == 'release' ?'./lib/index' : './src/index.js' ],
     },
     module: {
         rules: [{
@@ -67,38 +58,13 @@ const commonConfig = merge([{
             }, {
                 // 对 scss/css 文件的处理
                 test: /\.scss$|\.css$/,
-                loader: DEBUG ? [
-                    'style-loader', 'css-loader', 'sass-loader', 'postcss-loader'
-                ] : ExtractTextPlugin.extract({
-                    publicPath: '../',
-                    fallback: "style-loader",
-                    use: ['css-loader', 'sass-loader', 'postcss-loader']
-                }),
+                loader: [
+                    'style-loader', 'css-loader?modules', 'sass-loader', 'postcss-loader'
+                ],
             }, {
                 test: /\.html$/,
                 use: ['raw-loader'],
                 exclude: /node_modules/
-            },
-            /* 用来解析vue后缀的文件 */
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                exclude: /node_modules/,
-                options: {
-                    loaders: {
-                        'js': {
-                            loader: 'babel-loader',
-                            options: babelOptions,
-                        },
-                        'scss': DEBUG ? [
-                            'vue-style-loader', 'css-loader', 'sass-loader', 'postcss-loader'
-                        ] : ExtractTextPlugin.extract({
-                            publicPath: '../',
-                            fallback: 'vue-style-loader',
-                            use: ['css-loader', 'sass-loader', 'postcss-loader']
-                        }),
-                    }
-                }
             }, {
                 // 处理图片
                 test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -159,11 +125,8 @@ const commonConfig = merge([{
     ],
     resolve: {
         extensions: [
-            '.js', '.vue', '.jsx'
+            '.js', '.jsx'
         ], //后缀名自动补全
-        alias: {
-            vue$: 'vue/dist/vue', //webpack打包时，需要设置别名
-        },
         modules: ["libs", path.join(rootDir, "node_modules"), "node_modules"],
     },
 }]);
@@ -305,14 +268,13 @@ const releaseConfig = merge([{
     cache: false,
     output: {
         path: __dirname + '/dist',
-        filename: "index.js?[chunkhash:8]",
+        filename: "react-city-select.js",
         publicPath: '',
         libraryTarget: "umd",
         library: 'react-city-select',
     },
     externals: {
         react: 'react',
-        
     },
     stats: {
         assets: true,
@@ -339,10 +301,7 @@ const releaseConfig = merge([{
                 }, 0);
             },
         }),
-        new ExtractTextPlugin('css/styles.css?[contenthash:8]'),
-        new InlineChunkWebpackPlugin({
-            inlineChunks: ['manifest']
-        }),
+        new ExtractTextPlugin('styles.css'),
         new webpack.HashedModuleIdsPlugin(),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,

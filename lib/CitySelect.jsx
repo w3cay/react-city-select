@@ -1,19 +1,18 @@
 import React from "react";
+import PropTypes from 'prop-types';
 // 引入组件样式
-import './style.scss';
+import styles from './citySelect.scss';
+import data from './data.json';
+import iconSrc from './icon.png';
 
 function log(info) {
   console.log(`%c react-city-select %c ${info} %c`, "background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff", "background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff", "background:transparent");
 }
 
 export default class CitySelect extends React.Component {
+  
   constructor(props) {
     super(props);
-
-    if (!this.props.data) {
-      log('props.data 未传入数据')
-      return false;
-    }
 
     const dataKeys = Object.keys(this.props.data).map(secKey => secKey);
     // 根据数据项 键值 或 label属性 提取标识
@@ -37,6 +36,7 @@ export default class CitySelect extends React.Component {
       dataKeys: dataKeys,
       noniusKeys: noniusKeys,
     };
+
     // 当前滑动字母位置    
     this.onScrollIndex = 0;
     // 列表元素 DOM
@@ -54,8 +54,8 @@ export default class CitySelect extends React.Component {
     if (this.props.data) {
       log('init success')
       const noniusEle = document.querySelector('#cl-search-component  #nonius');
-      const noniusEleChild = document.querySelector('#cl-search-component  #nonius > .keys-item');
-      this.listTitleDom = document.querySelectorAll('#cl-search-component .section > .title');
+      const noniusEleChild = document.querySelector('#cl-search-component  #nonius > .' + styles['keys-item']);
+      this.listTitleDom = document.querySelectorAll('#cl-search-component .section > .' + styles['title']);
 
       this.noniusEleTop = noniusEle.getClientRects()[0].top;
       this.noniusEleHeight = noniusEleChild.clientHeight;
@@ -115,44 +115,53 @@ export default class CitySelect extends React.Component {
   }
 
   configAttr(key, attr) {
-    return this.props.config[key] && this.props.config[key][attr] ? this.props.config[key][attr] : null;
+    let res = null;
+    if (this.props.config) {
+      return this.props.config[key] && this.props.config[key][attr] ? this.props.config[key][attr] : null;
+    }
+    return res;
   }
 
   configAttrImg(key, attr) {
-    return this.props.config[key] && this.props.config[key][attr] ? <img src={this.props.config[key][attr]} alt="" /> : null;
+    let res = null;
+    if (this.props.config) {
+      res = this.props.config[key] && this.props.config[key][attr] ? <img src={this.props.config[key][attr]} alt="" /> : null;
+    }
+    return res;
   }
 
   render() {
     if (!this.props.data) return false;
     return (
-      <div id="cl-search-component">
+      <div id="cl-search-component" className={styles.clSearchComponent}>
         {/* 检索游标 */}
-        <div className="nonius"
+        <div className={styles['nonius']}
           id="nonius"
           onTouchStart={this.sidebarTouchStart.bind(this)}
           onTouchEnd={this.sidebarTouchEnd.bind(this)}
         >
           {/* 检索游标键值列表 */}
           {this.state.dataKeys.map((secKey, secIndex) =>
-            <div className="keys-item" key={secIndex}>
+            <div className={styles['keys-item']
+            } key={secIndex}>
               {this.configAttrImg(secKey, 'icon') || this.configAttr(secKey, 'key') || this.configAttr(secKey, 'title') || secKey}
             </div>
           )}
         </div>
 
         {/* 滑动选中标识 */}
-        {this.state.isShowSelectText ? <div className="on-select">
+        {this.state.isShowSelectText ? <div className={styles['on-select']}>
           {this.state.onSelectText}
         </div> : null}
 
         {/* 数据列表 */}
         <div className="container citys-list">
           {Object.keys(this.props.data).map((sec, secIndex) =>
-            <div className="section"
+            <div className={styles.section}
               id={secIndex} key={secIndex}>
-              <div className="title">{this.configAttr(sec, 'title') || sec}</div>
-              <div className={'box ' +
-                (this.configAttr(sec, 'style') || 'line')}>
+              <div className={styles['title']}>{this.configAttr(sec, 'title') || sec}</div>
+              <div className={ styles.box + ' '  +
+                (styles[this.configAttr(sec, 'style')] || styles['line'])}>
                 {this.props.data[sec].map((item, itemIndex) => <div
                   onClick={this.props.onSelectItem.bind(this, item)}
                   key={itemIndex}>{item.name}</div>)}
@@ -164,4 +173,27 @@ export default class CitySelect extends React.Component {
       </div>
     )
   }
+}
+
+// 默认Props 
+CitySelect.defaultProps = {
+  data: data.indexCitys,
+  config: {
+    pos: {
+      icon: iconSrc,
+      title: '定位城市',
+    },
+    hot: {
+      title: '热门城市',
+      key: '热门',
+      style: 'grid',
+    }
+  }      
+}
+
+// 类型检查
+CitySelect.propTypes = {
+  data: PropTypes.object,
+  config: PropTypes.object,
+  onSelectItem: PropTypes.func.isRequired,
 }
