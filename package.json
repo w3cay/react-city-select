@@ -1,6 +1,6 @@
 {
   "name": "react-select-city",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Select City Componet",
   "main": "lib/index",
   "keywords": [
@@ -40,6 +40,8 @@
     "precss": "^1.4.0",
     "progress-bar-webpack-plugin": "^1.9.3",
     "raw-loader": "^0.5.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
     "stylelint": "^7.11.1",
@@ -50,9 +52,7 @@
     "webpack-bundle-size-analyzer": "^2.7.0",
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0",
-    "webpack-stream": "^3.2.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "webpack-stream": "^3.2.0"
   },
   "repository": {
     "type": "git",
