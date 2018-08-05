@@ -3,3 +3,4 @@ example
 .babelrc
 .gitignore
 webpack.config.js
+yarn-error.log
