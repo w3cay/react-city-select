@@ -1,8 +1,8 @@
 {
-  "name": "react-select-city",
-  "version": "1.0.1",
+  "name": "react-city-select",
+  "version": "1.0.0",
   "description": "React Select City Componet",
-  "main": "lib/index",
+  "main": "dist/main.js",
   "keywords": [
     "city-select",
     "react-city-select",

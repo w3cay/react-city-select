@@ -267,7 +267,7 @@ const releaseConfig = merge([{
     cache: false,
     output: {
         path: __dirname + '/dist',
-        filename: "react-city-select.js",
+        filename: "main.js",
         publicPath: '',
         libraryTarget: "umd",
         library: 'react-city-select',

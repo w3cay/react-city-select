@@ -6,6 +6,11 @@
 
 使用：
 
+安装
+```
+npm i react-city-select 或 yarn add react-city-select
+```
+
 ```javascript
 ...
 // 引入 CitySelect 组件
