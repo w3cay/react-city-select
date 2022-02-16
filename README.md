@@ -86,6 +86,8 @@ sec-key : 对象key
 
 ### data 数据格式
 
+https://github.com/w3cay/react-city-select/blob/master/lib/data.json
+
 ```JSON
    
 // 定位数据项
